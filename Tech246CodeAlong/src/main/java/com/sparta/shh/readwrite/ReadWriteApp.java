@@ -14,7 +14,7 @@ public class ReadWriteApp
     public static void main(String[] args) {
         String myPathString = "src/main/resources/Todo.txt";
         String myOutputPathString = "src/main/resources/output.txt";
-        String myOutputPathString2 = "src/main/resources/listOutput2.txt";
+        String myOutputPathString2 = "src/main/resources/listOutput.txt";
         System.out.println("Read all lines using nio");
 
         var result = readNioAllLines(myPathString);
@@ -33,6 +33,10 @@ public class ReadWriteApp
         fruits.add("Banana");
         fruits.add("Cherry");
         writeStringListNio(myOutputPathString2,result);
+
+        ToDoManager toDoManager = new ToDoManager();
+        var toDos = toDoManager.readToDosFromFile(myPathString);
+        System.out.println(toDos);
 
     }
 
