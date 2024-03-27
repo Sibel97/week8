@@ -1,8 +1,6 @@
 package com.sparta.shh.testframework.lib.MyStepDefs;
 
-import com.sparta.shh.testframework.lib.pages.HomePage;
-import com.sparta.shh.testframework.lib.pages.PastPage;
-import com.sparta.shh.testframework.lib.pages.SearchPage;
+import com.sparta.shh.testframework.lib.pages.*;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -51,6 +49,10 @@ public class MyStepdefs {
     private HomePage homepage;
     private PastPage pastPage;
     private  SearchPage searchPage;
+    private CommentsPage commentsPage;
+    private JobPage jobsPage;
+    private AskPage askPage;
+    private ShowPage showPage;
 
 
     @AfterAll
@@ -90,13 +92,55 @@ public class MyStepdefs {
     @When("I search for the term java")
     public void iSearchForTheTermJava() {
         searchPage = homepage.search("java");
-        searchPage.enterSearchTerm("Java");
-        String text = searchPage.getText();
     }
 
     @Then("I will receive a list of stories based on java")
     public void iWillReceiveAListOfStoriesBasedOnJava() {
 
         MatcherAssert.assertThat(searchPage.getUrl(),Is.is("https://hn.algolia.com/?q=java"));
+    }
+
+    @When("I click on the comments link")
+    public void iClickOnTheCommentsLink() {
+        commentsPage = homepage.goToCommentsPage();
+    }
+
+    @Then("I will go to the comments page")
+    public void iWillGoToTheCommentsPage()
+    {
+        MatcherAssert.assertThat(commentsPage.getUrl(), Is.is("https://news.ycombinator.com/newcomments"));
+    }
+
+    @When("I click on the jobs link")
+    public void iClickOnTheJobsLink() {
+        jobsPage = homepage.goToJobsPage();
+
+    }
+
+    @Then("I will go the the jobs page")
+    public void iWillGoTheTheJobsPage() {
+        MatcherAssert.assertThat(jobsPage.getUrl(), Is.is("https://news.ycombinator.com/jobs"));
+    }
+
+    @When("I click on the ask link")
+    public void iClickOnTheAskLink() {
+        askPage = homepage.goToAskPage();
+
+    }
+
+    @Then("I will go to the ask page")
+    public void iWillGoToTheAskPage() {
+        MatcherAssert.assertThat(askPage.getUrl(), Is.is("https://news.ycombinator.com/ask"));
+    }
+
+    @When("I click on the show page")
+    public void iClickOnTheShowPage() {
+        showPage = homepage.goToShowPage();
+    }
+
+    @Then("I will go to the show page")
+    public void iWillGoToTheShowPage()
+    {
+        MatcherAssert.assertThat(showPage.getUrl(), Is.is("https://news.ycombinator.com/show"));
     }
 }

@@ -33,13 +33,4 @@ public class PastPage extends Page
         return new SearchPage(webDriver);
     }
 
-//    public String getUrl()
-//    {
-//        return webDriver.getCurrentUrl();
-//    }
-//
-//    public String getTitle()
-//    {
-//        return webDriver.getTitle();
-//    }
 }

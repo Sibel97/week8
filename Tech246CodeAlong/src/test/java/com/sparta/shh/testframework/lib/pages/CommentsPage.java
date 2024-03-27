@@ -11,7 +11,7 @@ public class CommentsPage extends Page{
 
     public CommentsPage(WebDriver webDriver) {
         super(webDriver);
-        if (!webDriver.getTitle().contains("<New Comments"))
+        if (!webDriver.getTitle().contains("New Comments"))
         {
             throw new IllegalStateException("This is not the comments page," +
                     "current page is " + webDriver.getCurrentUrl());
